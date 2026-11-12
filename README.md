@@ -33,3 +33,10 @@ Subnormal inputs work correctly because the algorithm uses only addition and sub
 ## Exports
 
 - `twoSum(a, b)` — returns `[hi, lo]`, a two-element array of numbers. `hi` is the rounded sum, `lo` is the compensation such that `hi + lo` exactly equals `a + b`.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
